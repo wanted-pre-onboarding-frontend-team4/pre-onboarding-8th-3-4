@@ -1,16 +1,45 @@
-/* eslint-disable */
 import React, { useEffect, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { AiFillCloseCircle } from 'react-icons/ai';
 import styled from 'styled-components';
 import AutoCompleteItem from './AutoCompleteItem';
+import useDebounce from 'hooks/useDebounce';
+import { useRecoilState } from 'recoil';
+import { Sick } from 'types';
+import getData from 'apis';
+import dataState from 'recoil/sliceData';
 
 const SearchBar: React.FC = () => {
   const [isSearch, setIsSearch] = useState<boolean>(false);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [searchedData, setSearchedData] = useState([]);
+  const [suggested, setSuggested] = useRecoilState<Sick[]>(dataState);
 
   const search = () => {
     setIsSearch(true);
   };
+
+  const filteredData = () => {
+    setSuggested(searchedData);
+    if (searchedData.length > 8) {
+      setSuggested(searchedData.slice(0, 6));
+    }
+  };
+  useEffect(filteredData, [searchTerm, searchedData]);
+
+  const getSearchTermHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+  const { debounceValue } = useDebounce(searchTerm);
+
+  useEffect(() => {
+    if (!debounceValue) {
+      setSearchedData([]);
+    }
+    getData(debounceValue).then((res: React.SetStateAction<never[]>) =>
+      setSearchedData(res),
+    );
+  }, [debounceValue]);
 
   return (
     <Wrapper>
@@ -23,6 +52,7 @@ const SearchBar: React.FC = () => {
             onClick={() => {
               search();
             }}
+            onChange={getSearchTermHandler}
           />
           {isSearch && (
             <AiFillCloseCircle style={{ fontSize: '1rem', color: '#A6AFB7' }} />

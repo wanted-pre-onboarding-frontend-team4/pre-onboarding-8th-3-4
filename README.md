@@ -28,7 +28,20 @@
 
 <br />
 
+## 📝 프로젝트 설명 
+
+검색창 구현 + 검색어 추천 기능 구현 
+
+
+## 🖥 프로젝트 실행 방법
+```
+npm install
+
+npm start
+```
 ## 📌배포링크
+
+## 📰 배포 gif
 
 <details>
   <summary>볼드 처리 기능</summary>

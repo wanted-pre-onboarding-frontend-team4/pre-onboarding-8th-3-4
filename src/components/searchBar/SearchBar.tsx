@@ -8,12 +8,14 @@ import { useRecoilState } from 'recoil';
 import { Sick } from 'types';
 import getData from 'apis';
 import dataState from 'recoil/sliceData';
+import useKeyDown from 'hooks/useKeyDown';
 
 const SearchBar: React.FC = () => {
   const [isSearch, setIsSearch] = useState<boolean>(false);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchedData, setSearchedData] = useState([]);
   const [suggested, setSuggested] = useRecoilState<Sick[]>(dataState);
+  const [activeIdx, handleKeyArrow] = useKeyDown(suggested || []);
 
   const search = () => {
     setIsSearch(true);
@@ -22,10 +24,10 @@ const SearchBar: React.FC = () => {
   const filteredData = () => {
     setSuggested(searchedData);
     if (searchedData.length > 8) {
-      setSuggested(searchedData.slice(0, 6));
+      setSuggested(searchedData.slice(0, 7));
     }
   };
-  useEffect(filteredData, [searchTerm, searchedData]);
+  useEffect(filteredData, [searchTerm, searchedData, setSuggested]);
 
   const getSearchTermHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -53,6 +55,7 @@ const SearchBar: React.FC = () => {
               search();
             }}
             onChange={getSearchTermHandler}
+            onKeyDown={handleKeyArrow}
           />
           {isSearch && (
             <AiFillCloseCircle style={{ fontSize: '1rem', color: '#A6AFB7' }} />
@@ -62,7 +65,9 @@ const SearchBar: React.FC = () => {
           <BsSearch />
         </Button>
       </SearchWrapper>
-      {isSearch && <AutoCompleteItem />}
+      {isSearch && (
+        <AutoCompleteItem searchTerm={debounceValue} activeIndex={activeIdx} />
+      )}
     </Wrapper>
   );
 };

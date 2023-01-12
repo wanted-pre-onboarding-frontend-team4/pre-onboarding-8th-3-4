@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
@@ -7,23 +7,24 @@ import dataState from '../../recoil/sliceData';
 
 type Props = {
   searchTerm: string | undefined;
+  activeIndex: number;
 };
 const AutoCompleteItem = (props: Props) => {
-  const { searchTerm } = props;
-
+  const { searchTerm, activeIndex } = props;
+  const autoRef = useRef<HTMLUListElement>(null);
   const [suggested] = useRecoilState<Sick[]>(dataState);
   return (
     <Wrapper onClick={() => {}} onMouseDown={e => e.preventDefault()}>
       <ContentWrapper>
         <Title>추천 검색어</Title>
-        <ul>
+        <ul ref={autoRef}>
           {!searchTerm ? (
             <div>검색어를 입력해주세요</div>
           ) : suggested.length === 0 ? (
             <div>검색어없음</div>
           ) : (
             suggested?.map((item, idx) => (
-              <Item key={item.sickCd}>
+              <Item key={item.sickCd} isActive={activeIndex === idx}>
                 {item.sickNm
                   .replaceAll(searchTerm, `#$%${searchTerm}#$%`)
                   .split('#$%')
@@ -59,12 +60,13 @@ const Title = styled.p`
   border-bottom: 1px solid #333;
 `;
 
-const Item = styled.li`
+const Item = styled.li<{ isActive: boolean }>`
   padding: 5px;
   width: 400px;
   &:hover {
     background-color: #edf5f5d4;
     cursor: pointer;
   }
+  background-color: ${props => (props.isActive ? '#edf5f5d4' : '#fff')};
   position: relative;
 `;

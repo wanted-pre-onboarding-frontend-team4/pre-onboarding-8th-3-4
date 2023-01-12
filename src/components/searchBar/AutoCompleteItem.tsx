@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useRecoilState } from 'recoil';
 import { Sick } from '../../types';
 import dataState from '../../recoil/sliceData';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 type Props = {
   searchTerm: string | undefined;
@@ -25,6 +26,9 @@ const AutoCompleteItem = (props: Props) => {
           ) : (
             suggested?.map((item, idx) => (
               <Item key={item.sickCd} isActive={activeIndex === idx}>
+                <SearchMark>
+                  <AiOutlineSearch />
+                </SearchMark>
                 {item.sickNm
                   .replaceAll(searchTerm, `#$%${searchTerm}#$%`)
                   .split('#$%')
@@ -49,24 +53,34 @@ export default AutoCompleteItem;
 
 const Wrapper = styled.div`
   background-color: #fff;
+  margin-top: 10px;
   height: 400px;
   border-radius: 20px;
-  font-size: 20px;
+  font-size: 18px;
 `;
 const ContentWrapper = styled.div`
   padding: 25px;
 `;
 const Title = styled.p`
   border-bottom: 1px solid #333;
+  padding-bottom: 3px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #808080;
 `;
 
 const Item = styled.li<{ isActive: boolean }>`
-  padding: 5px;
+  padding: 7px;
   width: 400px;
+  margin-bottom: 4px;
   &:hover {
     background-color: #edf5f5d4;
     cursor: pointer;
   }
   background-color: ${props => (props.isActive ? '#edf5f5d4' : '#fff')};
   position: relative;
+`;
+
+const SearchMark = styled.span`
+  margin-right: 14px;
 `;

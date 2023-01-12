@@ -57,9 +57,6 @@ const SearchBar: React.FC = () => {
             onChange={getSearchTermHandler}
             onKeyDown={handleKeyArrow}
           />
-          {isSearch && (
-            <AiFillCloseCircle style={{ fontSize: '1rem', color: '#A6AFB7' }} />
-          )}
         </InputWrapper>
         <Button type='button'>
           <BsSearch />
@@ -99,7 +96,7 @@ const Input = styled.input`
   width: 350px;
   height: 30px;
   font-size: 1.2rem;
-  color: #e0e3e6;
+  color: #333;
   padding-left: 0.8rem;
 `;
 const Button = styled.button`

@@ -10,7 +10,7 @@ const useKeyDown = (
 ): [number, (e: React.KeyboardEvent<HTMLInputElement>) => void] => {
   const [activeIdx, setActiveIdx] = useState(-1);
 
-  const handleKeyArrow = useCallback(
+  const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
       switch (e.key) {
         case ARROW_DOWN:
@@ -31,6 +31,6 @@ const useKeyDown = (
     [data, activeIdx],
   );
 
-  return [activeIdx, handleKeyArrow];
+  return [activeIdx, handleKeyDown];
 };
 export default useKeyDown;

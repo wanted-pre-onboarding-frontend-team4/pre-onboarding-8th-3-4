@@ -12,14 +12,10 @@ const getData = async (keyword: string) => {
         },
       });
       const store = response.data;
-      // 데이터 없는 경우
-      console.log('데이터 없어요');
       cacheStorage.put(keyword, new Response(JSON.stringify(store)));
       return store;
     }
     const cached = await cachedResponse?.json();
-    // 데이터 있는 경우
-    console.log('데이터 있어요');
 
     return cached;
   }

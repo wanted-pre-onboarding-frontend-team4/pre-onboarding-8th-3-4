@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { AiFillCloseCircle } from 'react-icons/ai';
 import styled from 'styled-components';
 import AutoCompleteItem from './AutoCompleteItem';
 import useDebounce from 'hooks/useDebounce';
@@ -16,6 +15,7 @@ const SearchBar: React.FC = () => {
   const [searchedData, setSearchedData] = useState([]);
   const [suggested, setSuggested] = useRecoilState<Sick[]>(dataState);
   const [activeIdx, handleKeyArrow] = useKeyDown(suggested || []);
+  const { debounceValue } = useDebounce(searchTerm);
 
   const search = () => {
     setIsSearch(true);
@@ -32,7 +32,6 @@ const SearchBar: React.FC = () => {
   const getSearchTermHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
-  const { debounceValue } = useDebounce(searchTerm);
 
   useEffect(() => {
     if (!debounceValue) {

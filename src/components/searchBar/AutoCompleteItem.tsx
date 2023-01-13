@@ -10,10 +10,12 @@ type Props = {
   searchTerm: string | undefined;
   activeIndex: number;
 };
+
 const AutoCompleteItem = (props: Props) => {
   const { searchTerm, activeIndex } = props;
   const autoRef = useRef<HTMLUListElement>(null);
   const [suggested] = useRecoilState<Sick[]>(dataState);
+
   return (
     <Wrapper onClick={() => {}} onMouseDown={e => e.preventDefault()}>
       <ContentWrapper>

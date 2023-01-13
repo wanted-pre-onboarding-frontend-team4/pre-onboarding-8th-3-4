@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { Sick } from '../../types';
 import dataState from '../../recoil/sliceData';
 import { AiOutlineSearch } from 'react-icons/ai';
+import EmptyResult from './EmptyResult';
 
 type Props = {
   searchTerm: string | undefined;
@@ -19,12 +20,16 @@ const AutoCompleteItem = (props: Props) => {
   return (
     <Wrapper onClick={() => {}} onMouseDown={e => e.preventDefault()}>
       <ContentWrapper>
+        <Searched>
+          <AiOutlineSearch />
+          {searchTerm}
+        </Searched>
         <Title>추천 검색어</Title>
         <ul ref={autoRef}>
           {!searchTerm ? (
-            <div>검색어를 입력해주세요</div>
+            <EmptyResult text={'검색어를 입력해주세요'} />
           ) : suggested.length === 0 ? (
-            <div>검색어없음</div>
+            <EmptyResult text={'검색 결과가 없습니다.'} />
           ) : (
             suggested?.map((item, idx) => (
               <Item key={item.sickCd} isActive={activeIndex === idx}>
@@ -66,12 +71,13 @@ const ContentWrapper = styled.div`
 const Title = styled.p`
   border-bottom: 1px solid #333;
   padding-bottom: 3px;
-  font-size: 15px;
   margin-bottom: 10px;
+  font-size: 15px;
   color: #808080;
 `;
 
 const Item = styled.li<{ isActive: boolean }>`
+  display: flex;
   padding: 7px;
   width: 400px;
   margin-bottom: 4px;
@@ -85,4 +91,12 @@ const Item = styled.li<{ isActive: boolean }>`
 
 const SearchMark = styled.span`
   margin-right: 14px;
+`;
+const Searched = styled.div`
+  font-size: 19px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-weight: 700;
 `;

@@ -25,7 +25,7 @@ const AutoCompleteItem = (props: Props) => {
           {searchTerm}
         </Searched>
         <Title>추천 검색어</Title>
-        <ul ref={autoRef}>
+        <ListWrapper ref={autoRef}>
           {!searchTerm ? (
             <EmptyResult text={'검색어를 입력해주세요'} />
           ) : suggested.length === 0 ? (
@@ -50,7 +50,7 @@ const AutoCompleteItem = (props: Props) => {
               </Item>
             ))
           )}
-        </ul>
+        </ListWrapper>
       </ContentWrapper>
     </Wrapper>
   );
@@ -75,22 +75,22 @@ const Title = styled.p`
   font-size: 15px;
   color: #808080;
 `;
-
-const Item = styled.li<{ isActive: boolean }>`
+const ListWrapper = styled.ul`
   display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Item = styled.li<{ isActive: boolean }>`
   padding: 7px;
-  width: 400px;
+  width: 425px;
   margin-bottom: 4px;
-  &:hover {
-    background-color: #edf5f5d4;
-    cursor: pointer;
-  }
   background-color: ${props => (props.isActive ? '#edf5f5d4' : '#fff')};
   position: relative;
 `;
 
 const SearchMark = styled.span`
-  margin-right: 14px;
+  margin-right: 5px;
+  font-size: 16px;
 `;
 const Searched = styled.div`
   font-size: 19px;

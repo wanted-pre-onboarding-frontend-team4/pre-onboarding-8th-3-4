@@ -17,10 +17,6 @@ const SearchBar: React.FC = () => {
   const [activeIdx, handleKeyArrow] = useKeyDown(suggested || []);
   const { debounceValue } = useDebounce(searchTerm);
 
-  const search = () => {
-    setIsSearch(true);
-  };
-
   const filteredData = () => {
     setSuggested(searchedData);
     if (searchedData.length > 8) {
@@ -51,10 +47,11 @@ const SearchBar: React.FC = () => {
             type='text'
             placeholder='질환명을 입력해 주세요'
             onClick={() => {
-              search();
+              setIsSearch(true);
             }}
             onChange={getSearchTermHandler}
             onKeyDown={handleKeyArrow}
+            onBlur={() => setIsSearch(false)}
           />
         </InputWrapper>
         <Button type='button'>

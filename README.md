@@ -4,90 +4,71 @@
 >
 > 기간 : 2023년 1월 10일 ~ 2023년 1월 13일
 
-
-
 <br />
 
 ## 📖 목차
 
 - [팀원명](#팀원명)
+- [프로젝트 설명](#프로젝트-설명)
+- [프로젝트 실행 방법](#프로젝트-실행-방법)
 - [배포링크](#배포링크)
+- [배포gif](#배포gif)
 - [협업과정](#협업과정)
 - [팀 코드 컨벤션](#팀-코드-컨벤션)
-- [폴더구조](#폴더구조)
+- [과제목표](#과제목표)
 - [Best Practice 및 채택 근거](#best-practice-및-채택-근거)
+- [폴더구조](#폴더구조)
 - [사용기술](#사용기술)
 
 <br />
 
 ## 💪팀원명
 
-| 성환(팀장)                              | 수민(팀원)                              | 용훈(팀원)                            | 혜진(팀원)                                | 정민(팀원)                                |
-| --------------------------------------- | --------------------------------------- | ------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| [tlsrb100](https://github.com/tlsrb100) | [tnals545](https://github.com/tnals545) | [KKKHun2](https://github.com/KKKHun2) | [hyejineee](https://github.com/hyejineee) | [jeongmin7](https://github.com/jeongmin7) |
+| <img src="https://avatars.githubusercontent.com/u/104765779?v=4" width="120" height="120" /> | <img src="https://avatars.githubusercontent.com/u/92634711?v=4" width="120" height="120" /> | <img src="https://user-images.githubusercontent.com/105702862/205853151-2fa17dea-1d5d-47ba-9f54-94cd175a5e19.jpeg" width="120" height="120" /> | <img src="https://avatars.githubusercontent.com/u/44992033?v=4" width="120" height="120" /> | <img src="https://avatars.githubusercontent.com/u/91598778?v=4" width="120" height="120" /> |
+| :------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: |
+|                           [tlsrb100](https://github.com/tlsrb100)                            |                           [tnals545](https://github.com/tnals545)                           |                                                     [KKKHun2](https://github.com/KKKHun2)                                                      |                          [hyejineee](https://github.com/hyejineee)                          |                          [jeongmin7](https://github.com/jeongmin7)                          |
+|                                          성환(팀장)                                          |                                         수민(팀원)                                          |                                                                   용훈(팀원)                                                                   |                                         혜진(팀원)                                          |                                         정민(팀원)                                          |
 
 <br />
 
-## 📝 프로젝트 설명 
+## 📝프로젝트 설명
 
-검색창 구현 + 검색어 추천 기능 구현 
+검색창 구현 + 검색어 추천 기능 구현
 
+<br />
 
-## 🖥 프로젝트 실행 방법
-```
-npm install
+## 🖥프로젝트 실행 방법
 
+```shell
+
+# 프로젝트 clone
+$ git clone https://github.com/wanted-pre-onboarding-frontend-team4/pre-onboarding-8th-3-4.git
+
+# npm 설치
+$ npm install
+
+# .env 파일 생성 및 해당 상수 삽입
+REACT_APP_BASE_URL=http://localhost:4000/sick
+
+# 프로젝트 실행
 npm start
+
 ```
+
+<br />
+
 ## 📌배포링크
 
-## 📰 배포 gif
+https://magical-drink.surge.sh/
 
-<details>
-  <summary>볼드 처리 기능</summary>
-    <div markdown="1">
-      
-    </div>
-</details>
+<br />
+<br />
 
-<details>
-  <summary>검색어없음 출력</summary>
-    <div markdown="1">
-      
-    </div>
-</details>
+## 📰배포gif
 
-<details>
-  <summary>Api호출 최적화 Cache Storage</summary>
-    <div markdown="1">
-      
-    </div>
-</details>
+<a href="https://github.com/wanted-pre-onboarding-frontend-team4/pre-onboarding-8th-3-4/wiki/gif-%ED%8C%8C%EC%9D%BC%EB%A1%9C-%EB%AF%B8%EB%A6%AC%EB%B3%B4%EA%B8%B0">gif 파일 확인하기</a>
 
-<details>
-  <summary>Debounce 적용기능</summary>
-    <div markdown="1">
-       
-    </div>
-</details>
-
-<details>
-  <summary>Api호출 횟수 확인 가능</summary>
-    <div markdown="1">
-       
-    </div>
-</details>
-
-<details>
-  <summary>키보드 이동</summary>
-    <div markdown="1">
-       
-    </div>
-</details>
-
-
-
-
+<br />
 <br />
  
 ## 😊협업과정
@@ -124,14 +105,72 @@ npm start
 
 <br />
 
+## 💯과제목표
+
+#### 사용자가 입력한 텍스트와 일치하는 부분 볼드처리
+
+- 검색어 추천 목록과 입력한 텍스트랑 일치하는 글자가 화면에서 볼드 처리됩니다.
+
+#### 검색어가 없을 시 "검색어 없음" 표출
+
+- 검색된 문자열이 없을 경우 검색어 없음 표출
+
+#### API 호출별로 로컬 캐싱 구현
+
+- api 호출하는 검색어를 캐시 스토리지에 저장해서 같은 검색어 입력시 api 호출이 발생하지 않도록 합니다.
+
+#### 입력마다 API 호출하지 않도록 API 호출 횟수를 줄이는 전략 수립 및 실행
+
+- api 요청에 300ms의 debounce를 적용했습니다.
+  사용자의 입력마다 API 호출 하는것이 아닌 사용자의 입력이 해당 시간동안 없을때만 호출하게 하여 횟수를 줄였습니다.
+
+#### API를 호출할 때 마다 console.info("calling api") 출력을 통해 콘솔창에서 API 호출 횟수 확인이 가능하도록 설정
+
+- api를 호출할떄마다 메세지를 콘솔창에 출력해서 호출횟수 확인이 가능하도록 합니다.
+
+#### 키보드만으로 추천 검색어들로 이동 가능하도록 구현
+
+- useCallback 이용해서 ArrowDown,ArrowUp,Enter 상황에 각각의 기능 구현했습니다.
+
+<br />
+
 ## ✅Best Practice 및 채택 근거
 
+1. <a href="https://github.com/wanted-pre-onboarding-frontend-team4/pre-onboarding-8th-3-4/wiki/1.-%EC%9E%85%EB%A0%A5%ED%95%9C-%ED%85%8D%EC%8A%A4%ED%8A%B8%EC%99%80-%EC%9D%BC%EC%B9%98%ED%95%98%EB%8A%94-%EB%B6%80%EB%B6%84-%EB%B3%BC%EB%93%9C-%EC%B2%98%EB%A6%AC-%EC%A0%84%EB%9E%B5">입력한 텍스트와 일치하는 부분 볼드 처리 전략</a>
+2. <a href="https://github.com/wanted-pre-onboarding-frontend-team4/pre-onboarding-8th-3-4/wiki/2.-%EA%B2%80%EC%83%89%EC%96%B4-%EC%97%86%EC%9D%8C-%EC%B6%9C%EB%A0%A5">검색어 없음 출력</a>
+3. <a href="https://github.com/wanted-pre-onboarding-frontend-team4/pre-onboarding-8th-3-4/wiki/3.-Cache-Storage%EC%82%AC%EC%9A%A9%ED%95%98%EC%97%AC-Api-%ED%98%B8%EC%B6%9C-%EC%B5%9C%EC%A0%81%ED%99%94">Cache Storage사용하여 Api 호출 최적화</a>
+4. <a href="https://github.com/wanted-pre-onboarding-frontend-team4/pre-onboarding-8th-3-4/wiki/4.-%EC%9E%85%EB%A0%A5%EB%A7%88%EB%8B%A4-API-%ED%98%B8%EC%B6%9C%ED%95%98%EC%A7%80-%EC%95%8A%EB%8F%84%EB%A1%9D-API-%ED%98%B8%EC%B6%9C-%ED%9A%9F%EC%88%98%EB%A5%BC-%EC%A4%84%EC%9D%B4%EB%8A%94-%EC%A0%84%EB%9E%B5-%EC%88%98%EB%A6%BD-%EB%B0%8F-%EC%8B%A4%ED%96%89">입력마다 api호출 전략</a>
+5. <a href="https://github.com/wanted-pre-onboarding-frontend-team4/pre-onboarding-8th-3-4/wiki/5.-%ED%82%A4%EB%B3%B4%EB%93%9C-%EC%A1%B0%EC%9E%91-%EA%B5%AC%ED%98%84">키보드 조작 구현</a>
 
+<br />
 
 ## 📁폴더구조
 
 ```
-
+src
+ ┣ apis
+ ┃ ┗ index.ts
+ ┣ components
+ ┃ ┣ autoComplete
+ ┃ ┃ ┣ AutoCompleteItem.tsx
+ ┃ ┃ ┗ EmptyResult.tsx
+ ┃ ┗ SearchBar.tsx
+ ┣ hooks
+ ┃ ┣ useDebounce.ts
+ ┃ ┗ useKeyDown.ts
+ ┣ pages
+ ┃ ┗ SearchPage.tsx
+ ┣ recoil
+ ┃ ┗ limitedData.ts
+ ┣ styles
+ ┃ ┗ GlobalStyle.ts
+ ┣ types
+ ┃ ┗ index.ts
+ ┣ App.css
+ ┣ App.tsx
+ ┣ index.css
+ ┣ index.tsx
+ ┗ react-app-env.d.ts
 
 ```
 
@@ -142,10 +181,9 @@ npm start
 <div align=left>
 <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white" >
 <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=TypeScript&logoColor=white" >
- <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=Vercel&logoColor=white" >
 <img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white" >
 <img src="https://img.shields.io/badge/Antd-61DAFB?style=for-the-badge&logo=Antd&logoColor=white" >
-<img src="https://img.shields.io/badge/Npm-CB3837?style=for-the-badge&logo=Npm&logoColor=white" >
+<img src="https://img.shields.io/badge/recoil-017BE8?style=for-the-badge&logo=recoil&logoColor=white" >
 
  </div>
 

@@ -20,10 +20,12 @@ const AutoCompleteItem = (props: Props) => {
   return (
     <Wrapper onClick={() => {}} onMouseDown={e => e.preventDefault()}>
       <ContentWrapper>
-        <Searched>
-          <AiOutlineSearch />
-          {searchTerm}
-        </Searched>
+        {searchTerm && (
+          <Searched>
+            <AiOutlineSearch />
+            {searchTerm}
+          </Searched>
+        )}
         <Title>추천 검색어</Title>
         <ListWrapper ref={autoRef}>
           {!searchTerm ? (

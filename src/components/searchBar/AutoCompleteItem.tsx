@@ -56,7 +56,7 @@ export default AutoCompleteItem;
 const Wrapper = styled.div`
   background-color: #fff;
   margin-top: 10px;
-  height: 400px;
+  height: 450px;
   border-radius: 20px;
   font-size: 18px;
 `;

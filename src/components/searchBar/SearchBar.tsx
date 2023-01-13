@@ -14,7 +14,7 @@ const SearchBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchedData, setSearchedData] = useState([]);
   const [suggested, setSuggested] = useRecoilState<Sick[]>(dataState);
-  const [activeIdx, handleKeyArrow] = useKeyDown(suggested || []);
+  const [activeIdx, handleKeyDown] = useKeyDown(suggested || []);
   const { debounceValue } = useDebounce(searchTerm);
 
   const filteredData = () => {
@@ -50,7 +50,7 @@ const SearchBar: React.FC = () => {
               setIsSearch(true);
             }}
             onChange={getSearchTermHandler}
-            onKeyDown={handleKeyArrow}
+            onKeyDown={handleKeyDown}
             onBlur={() => setIsSearch(false)}
           />
         </InputWrapper>
